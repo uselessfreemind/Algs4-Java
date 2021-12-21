@@ -1,2 +1,1 @@
-# Algs4-Java
-It'll take long to finish
+Most exercises for all chapters.It'll take long to finish
