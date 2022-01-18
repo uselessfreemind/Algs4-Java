@@ -33,14 +33,19 @@ public class Matrix {
     }
 
     public static double[] mult(double m[][], double v[]) {
-       
-
+        if (m[0].length != v.length)
+            return null;
+        double res[] = new double[m.length];
+        for (int i = 0; i < m.length; i++)
+            for (int j = 0; j < m[0].length; j++)//col of m
+                res[i] += m[i][j] * v[j];
+        return res;
     }
 
     public static void main(String[] args) {
         /*double a[] = {2.0, 3.0};
         double b[] = {2.5, 1.5};
-        StdOut.printf("%f, ", dot(a, b));driver dot product*/
+        StdOut.printf("%f, ", dot(a, b));driver program product*/
 
         /*double a[][] = {{2.0, 2.0}, {1.0, 3.0}, {2.5, 2.25}};
         double b[][] = {{4.0, 1.0, 1.25}, {1.5, 2.0, 5.20}};
@@ -49,7 +54,7 @@ public class Matrix {
             for (int j = 0; j < b[0].length; j++) {
                 StdOut.printf("%f, ", res[i][j]);
                 if (j == b[0].length - 1) StdOut.println();
-            }driver matrix multiply*/
+            }driver program matrix multiply*/
 
        /*double a[][] = {{4.0, 1.0, 1.25}, {1.5, 2.0, 5.20}};
         double res[][] = transpose(a);
@@ -58,8 +63,14 @@ public class Matrix {
                 StdOut.printf("%f, ", res[i][j]);
                 if (j == res[0].length - 1) StdOut.println();
                 }
-                driver matrix transpose
+                driver program matrix transpose
         */
+
+      /*  double a[][] = {{1.0, -1.0, 2.0}, {0.0, -3.0, 1.0}};
+        double v[] = {2.0, 1.0, 0.0};
+        double res[] = mult(a, v);
+        for (int i = 0; i < res.length; i++)
+            StdOut.printf("%f \n", res[i]);driver program matrix * vector*/
     }
 }
 
