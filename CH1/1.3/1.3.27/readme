@@ -1,1 +1,2 @@
-
+nodeswap() compare two adjacent nodes.If previous>next swap the two
+max() iteratively calls nodeswap and thus the max element must be the last node
