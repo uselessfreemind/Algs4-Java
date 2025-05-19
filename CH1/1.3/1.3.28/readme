@@ -1,1 +1,3 @@
-Implementation recurrsive
+nodeswap() compare two adjacent nodes.If previous>next swap the two
+max() calls nodeswap() and recurrs itself. The max element must be the last node (not the pointer to the last!
+because of the different value at each calling layer when exiting recurrsion)
