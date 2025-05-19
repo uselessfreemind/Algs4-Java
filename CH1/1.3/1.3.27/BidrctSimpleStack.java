@@ -1,6 +1,8 @@
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
+import java.util.NoSuchElementException;
+
 public class BidrctSimpleStack<Item> {
     private class node {
         Item item;
@@ -41,7 +43,6 @@ public class BidrctSimpleStack<Item> {
             first.next = null;
             first.last = null;
             last = first;
-            last.next = null;
         } else {
             temp = first;
             first = in;
@@ -97,10 +98,28 @@ public class BidrctSimpleStack<Item> {
         size--;
     }
 
+    public Item max(node f) {
+        if (size == 0)
+            throw new NoSuchElementException("0");
+        else if (size == 2)
+            if ((int) f.item < (int) f.next.item)
+                return f.next.item;
+            else
+                return f.item;
+        else
+            while (f != last) {
+                if ((int) f.item >= (int) f.next.item)
+                    nodeswap(f);
+                else
+                    f = f.next;
+            }
+        return last.item;
+    }
+
     private void nodeswap(node f) {
         node after = f.next;
-        node temp1 = f;
-        node temp2 = after;
+        node temp1 = f.last;
+        node temp2 = after.next;
         if (f == first) {
             f.next = after.next;
             f.last = after;
@@ -118,22 +137,22 @@ public class BidrctSimpleStack<Item> {
             f.last = after;
             after.next = f;
             after.last = temp1.last;
-            temp1.last.next = after;
-            temp2.next.last = f;
+            temp1.next = after;
+            temp2.last = f;
         }
     }
 
     public static void main(String[] args) {
-        BidrctSimpleStack<String> source = new BidrctSimpleStack<>();
-        String temp;
+        BidrctSimpleStack<Integer> source = new BidrctSimpleStack<>();
+        int temp;
         while (!StdIn.isEmpty()) {
-            temp = StdIn.readString();
+            temp = StdIn.readInt();
             source.push(temp);
         }
 
-        source.nodeswap(source.first.next);
-        source.traverse(source.first);
+
+        StdOut.println(source.max(source.first));
         //while (!source.empty())
-        // StdOut.println(source.pop());
+        //StdOut.println(source.pop());
     }
 }
