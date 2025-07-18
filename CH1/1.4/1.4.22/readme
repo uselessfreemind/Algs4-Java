@@ -1,0 +1,2 @@
+Fibonacci search. 
+F(k)=array.length and F(k-2)~length/2
